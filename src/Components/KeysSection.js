@@ -9,7 +9,7 @@ const styles = {
   },
 };
 
-const KeysSection = () => {
+const KeysSection = ({ onKeyClick }) => {
   // const dizi = [
   //   { label: "%" },
   //   { label: "CE" },
@@ -19,35 +19,35 @@ const KeysSection = () => {
 
   return (
     <div style={styles.container}>
-      <KeyButton label="%" />
-      <KeyButton label="CE" />
-      <KeyButton label="C" />
-      <KeyButton label="BS" />
+      <KeyButton label="%" onKeyClick={onKeyClick} />
+      <KeyButton label="CE" onKeyClick={onKeyClick} />
+      <KeyButton label="C" onKeyClick={onKeyClick} />
+      <KeyButton label="BS" onKeyClick={onKeyClick} />
 
-      <KeyButton label="1/X" />
-      <KeyButton label="x²" />
-      <KeyButton label="²√X" />
-      <KeyButton label="÷" />
+      <KeyButton label="1/X" onKeyClick={onKeyClick} />
+      <KeyButton label="x²" onKeyClick={onKeyClick} />
+      <KeyButton label="²√X" onKeyClick={onKeyClick} />
+      <KeyButton label="÷" operator onKeyClick={onKeyClick} />
 
-      <KeyButton label="7" isNumber />
-      <KeyButton label="8" isNumber />
-      <KeyButton label="9" isNumber />
-      <KeyButton label="x" />
+      <KeyButton label="7" isNumber onKeyClick={onKeyClick} />
+      <KeyButton label="8" isNumber onKeyClick={onKeyClick} />
+      <KeyButton label="9" isNumber onKeyClick={onKeyClick} />
+      <KeyButton label="x" operator onKeyClick={onKeyClick} />
 
-      <KeyButton label="4" isNumber />
-      <KeyButton label="5" isNumber />
-      <KeyButton label="6" isNumber />
-      <KeyButton label="-" />
+      <KeyButton label="4" isNumber onKeyClick={onKeyClick} />
+      <KeyButton label="5" isNumber onKeyClick={onKeyClick} />
+      <KeyButton label="6" isNumber onKeyClick={onKeyClick} />
+      <KeyButton label="-" operator onKeyClick={onKeyClick} />
 
-      <KeyButton label="1" isNumber />
-      <KeyButton label="2" isNumber />
-      <KeyButton label="3" isNumber />
-      <KeyButton label="+" />
+      <KeyButton label="1" isNumber onKeyClick={onKeyClick} />
+      <KeyButton label="2" isNumber onKeyClick={onKeyClick} />
+      <KeyButton label="3" isNumber onKeyClick={onKeyClick} />
+      <KeyButton label="+" operator onKeyClick={onKeyClick} />
 
-      <KeyButton label="+/-" />
-      <KeyButton label="0" isNumber />
-      <KeyButton label="." />
-      <KeyButton label="=" isBlue />
+      <KeyButton label="+/-" onKeyClick={onKeyClick} />
+      <KeyButton label="0" isNumber onKeyClick={onKeyClick} />
+      <KeyButton label="." onKeyClick={onKeyClick} />
+      <KeyButton label="=" isBlue onKeyClick={onKeyClick} />
     </div>
   );
 };

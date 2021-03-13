@@ -19,11 +19,16 @@ const styles = {
   },
 };
 
-const ScreenSection = () => {
+const ScreenSection = ({ mainText, lastResult, currentOperation }) => {
   return (
     <div style={styles.screenSection}>
-      <span style={styles.caption}>324+</span>
-      <span style={styles.mainText}>4231</span>
+      {lastResult && currentOperation && (
+        <span style={styles.caption}>
+          {lastResult} {currentOperation}
+        </span>
+      )}
+
+      <span style={styles.mainText}>{mainText}</span>
     </div>
   );
 };

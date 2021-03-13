@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import KeysSection from "./Components/KeysSection";
 import ScreenSection from "./Components/ScreenSection";
 import TopHeader from "./Components/TopHeader";
@@ -21,12 +23,50 @@ const styles = {
 };
 
 function App() {
+  const [mainText, setMainText] = useState("0");
+  const [lastResult, setLastResult] = useState();
+  const [currentOperation, setCurrentOperation] = useState();
+
+  const [resetMainTextNextTime, setResetMainTextNextTime] = useState(true);
+
+  const handleKeyClick = (keyLabel, isNumber, operator) => {
+    if (isNumber) {
+      if (resetMainTextNextTime) {
+        setMainText(keyLabel);
+        setResetMainTextNextTime(false);
+      } else setMainText(mainText + keyLabel);
+    } else if (operator) {
+      console.log({ keyLabel, isNumber, operator });
+      setCurrentOperation(keyLabel);
+      setResetMainTextNextTime(true);
+
+      switch (keyLabel) {
+        case "+":
+          if (lastResult) {
+            const result = parseInt(mainText) + lastResult;
+            setLastResult(result);
+            setMainText(result);
+          } else {
+            setLastResult(parseInt(mainText));
+          }
+          break;
+
+        default:
+          break;
+      }
+    }
+  };
+
   return (
     <div style={styles.appContainer}>
       <div style={styles.calculaterContainer}>
         <TopHeader />
-        <ScreenSection />
-        <KeysSection />
+        <ScreenSection
+          mainText={mainText}
+          lastResult={lastResult}
+          currentOperation={currentOperation}
+        />
+        <KeysSection onKeyClick={handleKeyClick} />
       </div>
     </div>
   );

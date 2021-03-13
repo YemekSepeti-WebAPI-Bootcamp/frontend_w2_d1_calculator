@@ -30,7 +30,7 @@ const getHoveredStyle = (hovered, isBlue, isNumber) => {
   return hoveredStyle;
 };
 
-const KeyButton = ({ label, isNumber, isBlue, isRed }) => {
+const KeyButton = ({ label, isNumber, isBlue, operator, onKeyClick }) => {
   const [hovered, setHovered] = useState(false);
 
   const isNumberStyle = isNumber ? { backgroundColor: "#070707" } : {};
@@ -52,6 +52,9 @@ const KeyButton = ({ label, isNumber, isBlue, isRed }) => {
       }}
       onMouseLeave={() => {
         setHovered(false);
+      }}
+      onClick={() => {
+        onKeyClick(label, isNumber, operator);
       }}
     >
       <span style={styles.keyText}>{label}</span>
