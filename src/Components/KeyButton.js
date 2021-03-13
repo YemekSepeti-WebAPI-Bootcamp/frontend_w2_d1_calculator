@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const styles = {
   keyContainer: {
     width: "25%",
@@ -14,14 +16,43 @@ const styles = {
   },
 };
 
-const KeyButton = ({ label, isNumber }) => {
+const getHoveredStyle = (hovered, isBlue, isNumber) => {
+  let hoveredStyle = { cursor: "pointer" };
+  const setHoveredBackground = (backgroundColor) => {
+    hoveredStyle = { ...hoveredStyle, backgroundColor };
+  };
+
+  if (hovered) {
+    if (isBlue) setHoveredBackground("#2a96eb");
+    else setHoveredBackground("#999");
+  }
+
+  return hoveredStyle;
+};
+
+const KeyButton = ({ label, isNumber, isBlue, isRed }) => {
+  const [hovered, setHovered] = useState(false);
+
   const isNumberStyle = isNumber ? { backgroundColor: "#070707" } : {};
+  const isBlueStyle = isBlue ? { backgroundColor: "#134369" } : {};
+
+  const hoveredStyle = getHoveredStyle(hovered, isBlue, isNumber);
 
   return (
     <div
       className="button"
-      style={{ ...styles.keyContainer, ...isNumberStyle }}
-      on
+      style={{
+        ...styles.keyContainer,
+        ...isNumberStyle,
+        ...isBlueStyle,
+        ...hoveredStyle,
+      }}
+      onMouseEnter={(e) => {
+        setHovered(true);
+      }}
+      onMouseLeave={() => {
+        setHovered(false);
+      }}
     >
       <span style={styles.keyText}>{label}</span>
     </div>

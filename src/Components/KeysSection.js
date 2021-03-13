@@ -47,7 +47,7 @@ const KeysSection = () => {
       <KeyButton label="+/-" />
       <KeyButton label="0" isNumber />
       <KeyButton label="." />
-      <KeyButton label="=" />
+      <KeyButton label="=" isBlue />
     </div>
   );
 };
