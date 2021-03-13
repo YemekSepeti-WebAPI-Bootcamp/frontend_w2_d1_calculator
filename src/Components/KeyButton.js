@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+
+import { CalcContext } from "../CalcContext";
 
 const styles = {
   keyContainer: {
@@ -30,7 +32,9 @@ const getHoveredStyle = (hovered, isBlue, isNumber) => {
   return hoveredStyle;
 };
 
-const KeyButton = ({ label, isNumber, isBlue, operator, onKeyClick }) => {
+const KeyButton = ({ label, isNumber, isBlue, operator }) => {
+  const { handleKeyClick } = useContext(CalcContext);
+
   const [hovered, setHovered] = useState(false);
 
   const isNumberStyle = isNumber ? { backgroundColor: "#070707" } : {};
@@ -54,7 +58,7 @@ const KeyButton = ({ label, isNumber, isBlue, operator, onKeyClick }) => {
         setHovered(false);
       }}
       onClick={() => {
-        onKeyClick(label, isNumber, operator);
+        handleKeyClick(label, isNumber, operator);
       }}
     >
       <span style={styles.keyText}>{label}</span>

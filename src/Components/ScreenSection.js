@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { CalcContext } from "../CalcContext";
+
 const styles = {
   screenSection: {
     width: "100%",
@@ -19,7 +22,8 @@ const styles = {
   },
 };
 
-const ScreenSection = ({ mainText, lastResult, currentOperation }) => {
+const ScreenSection = () => {
+  const { mainText, lastResult, currentOperation } = useContext(CalcContext);
   return (
     <div style={styles.screenSection}>
       {lastResult && currentOperation && (
